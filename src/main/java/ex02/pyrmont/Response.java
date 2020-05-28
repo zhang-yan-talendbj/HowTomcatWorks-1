@@ -1,14 +1,14 @@
 package ex02.pyrmont;
 
-import java.io.OutputStream;
-import java.io.IOException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Locale;
-import javax.servlet.ServletResponse;
-import javax.servlet.ServletOutputStream;
 
 public class Response implements ServletResponse {
 
@@ -40,6 +40,7 @@ public class Response implements ServletResponse {
            [ message-body ]
          Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
       */
+            output.write("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n".getBytes());
             int ch = fis.read(bytes, 0, BUFFER_SIZE);
             while (ch != -1) {
                 output.write(bytes, 0, ch);

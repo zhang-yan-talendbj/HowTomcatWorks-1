@@ -2,27 +2,25 @@ package ex03.pyrmont.connector.http;
 
 import ex03.pyrmont.connector.ResponseStream;
 import ex03.pyrmont.connector.ResponseWriter;
-import ex03.pyrmont.connector.http.Constants;
+import org.apache.catalina.util.CookieTools;
 
-import java.io.OutputStream;
-import java.io.IOException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.util.CookieTools;
+import java.util.Locale;
 
 public class HttpResponse implements HttpServletResponse {
 
@@ -315,6 +313,8 @@ public class HttpResponse implements HttpServletResponse {
            [ message-body ]
          Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
       */
+            output.write("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n".getBytes());
+
             int ch = fis.read(bytes, 0, BUFFER_SIZE);
             while (ch != -1) {
                 output.write(bytes, 0, ch);

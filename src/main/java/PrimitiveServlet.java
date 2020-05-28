@@ -10,7 +10,6 @@ public class PrimitiveServlet implements Servlet {
 
     public void service(ServletRequest request, ServletResponse response)
             throws ServletException, IOException {
-        System.out.println("from service");
         PrintWriter out = response.getWriter();
         out.print("HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n");
 
